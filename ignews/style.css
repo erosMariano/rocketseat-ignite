@@ -1,0 +1,71 @@
+/*==Eros==*/
+img.img-solo,
+#fotos-header>div>div:nth-of-type(1)>span:nth-of-type(6) {
+    width: 100% !important;
+}
+
+
+#fotos-header>div>div:nth-of-type(1) {
+    width: 500px !important;
+}
+
+#fotos-header>div>div:nth-of-type(2)>span {
+    display: none;
+}
+
+
+/*Botão VER MAIS FOTOS*/
+
+#fotos-header>div>div:nth-of-type(3)>span {
+    height: 189px;
+    bottom: 0px;
+    left: 14px;
+    border-radius: 22px;
+    width: 272px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fotos-header .btn:hover {
+    transform: scale(1) !important;
+}
+
+.ver-mais-fotos-ss {
+    background: #991B29;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-header-empreendimento .empreendimento-dinamic-header span.pronto-morar {
+    right: 50%;
+    transform: translateX(50%);
+    color: #1A3152;
+    opacity: 0.8;
+    background: #fff;
+}
+
+
+@media(max-width: 1140px) {
+    #fotos-header>div>div:nth-of-type(3)>span {
+        width: 226px;
+    }
+
+    .ver-mais-fotos-ss {
+        position: absolute;
+        width: 171px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0px;
+        font-size: 14px;
+        justify-content: space-evenly;
+    }
+
+    .ver-fotos.btn.btn-red.d-block.d-lg-none{
+        display: none !important;
+    }
+}

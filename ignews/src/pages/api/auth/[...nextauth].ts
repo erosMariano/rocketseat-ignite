@@ -14,22 +14,46 @@ export default NextAuth({
         }),
     ],
 
-
+    
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
 
             try {
+                const usuarioGithub = user.email as string
+
                 await fauna.query(
-                    q.Create(
-                        q.Collection("users"),
-                        { data: { email: user.email } }
-                    )
+                    q.If(
+                        q.Not(
+                            q.Exists(
+                                q.Match(
+                                    q.Index("user_by_email"),
+                                    q.Casefold(usuarioGithub)
+                                )
+                            )
+                        ),
+                        q.Create(
+                            q.Collection("users"),
+                            { data: { email: usuarioGithub } }
+                        ),
+                        q.Get(
+                            q.Match(
+                                q.Index("user_by_email"),
+                                q.Casefold(usuarioGithub)
+                            )
+                        )
+                    ),
+
+
+
+
                 )
 
+                return true
             } catch (error) {
                 console.log(error)
             }
-            return true
+            return false
+
         },
     }
 })

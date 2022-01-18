@@ -13,15 +13,23 @@ export default NextAuth({
             authorization: { params: { scope: "read:user" } }
         }),
     ],
+
+
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
-            await fauna.query(
-                q.Create(
-                    q.Collection("users"),
-                    { data: user.email }
+
+            try {
+                await fauna.query(
+                    q.Create(
+                        q.Collection("users"),
+                        { data: { email: user.email } }
+                    )
                 )
-            )
+
+            } catch (error) {
+                console.log(error)
+            }
             return true
-        }
+        },
     }
 })

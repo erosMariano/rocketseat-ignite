@@ -1,5 +1,6 @@
 import { Client } from "faunadb"
-export const fauna = new Client({
+const key: string = (<string>process.env.FAUNADB_KEY) || ""
 
-    secret: process.env.FAUNA_KEY!
+export const fauna = new Client({
+    secret: key,
 })
